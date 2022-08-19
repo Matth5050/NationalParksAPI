@@ -6,6 +6,8 @@ using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
+using System.IdentityModel.Tokens.Jwt;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 namespace NationalPark.Controllers
 {
@@ -21,6 +23,7 @@ namespace NationalPark.Controllers
     }
 
     // GET api/parks
+  [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
    [HttpGet]
     public async Task<ActionResult<IEnumerable<Park>>> Get(string name, string state, string regName)
     {
