@@ -20,6 +20,31 @@ namespace NationalPark.Controllers
       _db = db;
     }
 
+    // GET api/parks
+   [HttpGet]
+    public async Task<ActionResult<IEnumerable<Park>>> Get(string name, string state, string regName)
+    {
+        var query = _db.Parks.AsQueryable();
+
+        if (regName != null)
+        {
+          Region thisRegion = _db.Regions.FirstOrDefault(region => region.Name == regName);
+          query = query.Where(entry => entry.RegionId == thisRegion.RegionId);
+        }
+
+        if (name != null)
+        {
+            query = query = query.Where(entry => entry.Name == name);
+        }
+
+        if (state != null) 
+        {
+            query = query.Where(entry => entry.State == state);
+        }
+
+      return await query.ToListAsync();
+    }
+
     // GET: api/Animals/5
     [HttpGet("{id}")]
     public async Task<ActionResult<Park>> GetPark(int id)
@@ -33,26 +58,6 @@ namespace NationalPark.Controllers
 
       return park;
     }
-
-    // GET api/parks
-    [HttpGet]
-    public async Task<ActionResult<IEnumerable<Park>>> Get(string name, string state)
-    {
-      var query = _db.Parks.AsQueryable();
-
-      if (name != null)
-      {
-        query = query.Where(entry => entry.Name == name);
-      }
-
-      if (state != null)
-      {
-        query = query.Where(entry => entry.State == state);
-      }
-
-      return await _db.Parks.ToListAsync();
-    }
-
     // POST api/parks
     [HttpPost]
     public async Task<ActionResult<Park>> Post(Park park)
