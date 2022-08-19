@@ -24,6 +24,7 @@ namespace NationalPark
             services.AddDbContext<NationalParkContext>(opt =>
                 opt.UseMySql(Configuration["ConnectionStrings:DefaultConnection"], ServerVersion.AutoDetect(Configuration["ConnectionStrings:DefaultConnection"])));
             services.AddControllers();
+            services.AddSwaggerGen();  
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -44,6 +45,10 @@ namespace NationalPark
             {
                 endpoints.MapControllers();
             });
+            app.UseSwagger();  
+            app.UseSwaggerUI(c => {  
+            c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V2");  
+        });  
         }
     }
 }
