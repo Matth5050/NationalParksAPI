@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NationalPark.Models;
 
@@ -10,9 +11,10 @@ using NationalPark.Models;
 namespace NationalParks.Solution.Migrations
 {
     [DbContext(typeof(NationalParkContext))]
-    partial class NationalParkContextModelSnapshot : ModelSnapshot
+    [Migration("20220819205728_addAuthenticaton")]
+    partial class addAuthenticaton
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
