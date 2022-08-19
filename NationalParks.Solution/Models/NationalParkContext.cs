@@ -1,8 +1,9 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace NationalPark.Models
 {
-    public class NationalParkContext : DbContext
+    public class NationalParkContext : IdentityDbContext
     {
         public NationalParkContext(DbContextOptions<NationalParkContext> options)
             : base(options)
