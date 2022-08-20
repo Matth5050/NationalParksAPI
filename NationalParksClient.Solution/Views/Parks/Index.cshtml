@@ -1,0 +1,29 @@
+@using NationalParkClient.Models;
+
+
+<h1>New Park: </h1>
+
+<form action="/Parks" method="post">
+  <label for="name">Name</label>
+  <input id="name" name="name" type="text">
+  <label for="state">State</label>
+  <input id="state" name="state" type="text">
+  @Html.Label("Region")
+  @Html.DropDownList("RegionId") 
+  <button type="submit">Go!</button>
+</form>
+
+<h1>All Parks:</h1>
+
+<ol>
+@foreach (Park park in Model)
+{
+  <ul>
+    <li>ID: @park.ParkId</li>
+    <li>Body: @park.Name</li>
+    <li>Author: @park.State</li>
+  </ul>
+  <a href="/Parks/Details/@(park.ParkId)"><p>View Details</p></a>
+  <br>
+}
+</ol>
