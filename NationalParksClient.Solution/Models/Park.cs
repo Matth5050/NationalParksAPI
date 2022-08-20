@@ -9,12 +9,12 @@ namespace NationalParkClient.Models
   {
     public int ParkId { get; set; }
     public int RegionId { get; set; }
-    public string Name { get; set; }
-    public string State { get; set; }
+    public string Name { get; set; } = default!;
+    public string State { get; set; } = default!;
   
     public static List<Park> GetParks()
     {
-      var apiCallTask = ApiHelper.GetAll();
+      var apiCallTask = ApiHelper.GetAll("parks");
       var result = apiCallTask.Result;
 
       JArray jsonResponse = JsonConvert.DeserializeObject<JArray>(result);
