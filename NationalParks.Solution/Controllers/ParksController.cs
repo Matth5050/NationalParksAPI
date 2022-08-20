@@ -23,7 +23,7 @@ namespace NationalPark.Controllers
     }
 
     // GET api/parks
-  [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+  // [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
    [HttpGet]
     public async Task<ActionResult<IEnumerable<Park>>> Get(string name, string state, string regName)
     {
