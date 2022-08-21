@@ -23,8 +23,8 @@ namespace NationalPark.Controllers
     }
 
     // GET api/parks
-  // [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
-   [HttpGet]
+
+  [HttpGet]
     public async Task<ActionResult<IEnumerable<Park>>> Get(string name, string state, string regName)
     {
         var query = _db.Parks.AsQueryable();
@@ -62,6 +62,7 @@ namespace NationalPark.Controllers
       return park;
     }
     // POST api/parks
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     [HttpPost]
     public async Task<ActionResult<Park>> Post(Park park)
     {
@@ -72,6 +73,7 @@ namespace NationalPark.Controllers
     }
 
     // PUT: api/parks/5
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     [HttpPut("{id}")]
     public async Task<IActionResult> Put(int id, Park park)
     {
@@ -102,6 +104,7 @@ namespace NationalPark.Controllers
     }
 
     // DELETE: api/parks/5
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeletePark(int id)
     {
