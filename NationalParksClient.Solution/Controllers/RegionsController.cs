@@ -28,44 +28,44 @@ namespace NationalParkClient.Controllers
     }
 
 
-		// [HttpPost]
-    // public IActionResult Index(Region region)
-    // {
-		// 	Region.Post(region);
-		// 	return RedirectToAction("Index");
-    // }
+		[HttpPost]
+    public IActionResult Index(Region region)
+    {
+			Region.Post(region);
+			return RedirectToAction("Index");
+    }
 
-	// 	public IActionResult Details(int id)
-	// 	{
-	// 		var region = Region.GetDetails(id);
-	// 		return View(region);
-	// 	}
+		public IActionResult Details(int id)
+		{
+			var region = Region.GetDetails(id);
+			return View(region);
+		}
 
-	// 	[HttpPost]
-	// 	public IActionResult Details(int id, Region region)
-	// 	{
-	// 		region.RegionId = id;
-	// 		Region.Put(region);
-	// 		return RedirectToAction("Details", id);
-	// 	}
+		[HttpPost]
+		public IActionResult Details(int id, Region region)
+		{
+			region.RegionId = id;
+			Region.Put(region);
+			return RedirectToAction("Details", id);
+		}
 
-	// 	public IActionResult Edit(int id)
-  //   {
-  //     var region = Region.GetDetails(id);
-  //     return View(region);
-  //   }
+		public IActionResult Edit(int id)
+    {
+      var region = Region.GetDetails(id);
+      return View(region);
+    }
 
-  //   [HttpPost]
-  //   public IActionResult Edit(Region region)
-  //   {     
-  //     Region.Put(region);
-  //     return RedirectToAction("Index");
-  //   }
+    [HttpPost]
+    public IActionResult Edit(Region region)
+    {     
+      Region.Put(region);
+      return RedirectToAction("Index");
+    }
 
-	// 	public IActionResult Delete(int id)
-  //   {
-  //     Region.Delete(id);
-  //     return RedirectToAction("Index");
-  //   }
-  // }
-}}
+		public IActionResult Delete(int id)
+    {
+      Region.Delete(id);
+      return RedirectToAction("Index");
+    }
+  }
+}
