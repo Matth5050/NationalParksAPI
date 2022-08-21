@@ -1,0 +1,24 @@
+@using NationalParkClient.Models;
+@model List<NationalParkClient.Models.Region>;
+
+<h1>Create Region:</h1>
+
+<form action="/Regions" method="post">
+  <label for="name">Region Name</label>
+  <input id="name" name="name" type="text">
+  <button type="submit">Go!</button>
+</form>
+
+<h1>All Regions:</h1>
+
+<ol>
+@foreach (Region region in Model)
+{
+  <ul>
+    <li>ID: @region.RegionId</li>
+    <li>Name: @region.Name</li>
+  </ul>
+  <a href="/Regions/Details/@(region.RegionId)"><p>View Details</p></a>
+  <br>
+}
+</ol>
