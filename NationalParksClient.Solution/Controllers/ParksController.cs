@@ -33,40 +33,40 @@ namespace NationalParkClient.Controllers
       return View("Error!");
     }
 
-    // [HttpPost]
-    // public IActionResult Index(Park park)
-    // {     
-    //   Park.Post(park);
-    //   return RedirectToAction("Index");
-    // }
+    [HttpPost]
+    public IActionResult Index(Park park)
+    {     
+      Park.Post(park);
+      return RedirectToAction("Index");
+    }
 
-    // public IActionResult Details(int id)
-		// {
-		// 	var park = park.GetDetails(id);
-    //   ViewBag.Group = Group.GetDetails(park.GroupId);
-		// 	return View(park);
-		// }
+    public IActionResult Details(int id)
+		{
+			var park = Park.GetDetails(id);
+      ViewBag.Region = Region.GetDetails(park.RegionId);
+			return View(park);
+		}
 
-		// [HttpPost]
-		// public IActionResult Details(int id, Park park)
-		// {
-		// 	park.ParkId = id;
-		// 	Park.Put(park);
-		// 	return RedirectToAction("Details", id);
-		// }
+		[HttpPost]
+		public IActionResult Details(int id, Park park)
+		{
+			park.ParkId = id;
+			Park.Put(park);
+			return RedirectToAction("Details", id);
+		}
 
-		// public IActionResult Edit(int id)
-    // {
-    //   var allGroups = Group.GetGroups();
-    //   ViewBag.GroupId = new SelectList( allGroups, "GroupId", "GroupName");
-    //   var park = Park.GetDetails(id);
-    //   return View(park);
-    // }
+		public IActionResult Edit(int id)
+    {
+      var allRegions = Region.GetRegions();
+      ViewBag.RegionId = new SelectList( allRegions, "RegionId", "Name");
+      var park = Park.GetDetails(id);
+      return View(park);
+    }
 
-		// public IActionResult Delete(int id)
-    // {
-    //   Park.Delete(id);
-    //   return RedirectToAction("Index");
-    // }
+		public IActionResult Delete(int id)
+    {
+      Park.Delete(id);
+      return RedirectToAction("Index");
+    }
   }
 }
