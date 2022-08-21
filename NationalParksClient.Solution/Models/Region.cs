@@ -1,8 +1,5 @@
-using System.Collections.Generic;
-using System;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace NationalParkClient.Models
 {
@@ -21,5 +18,32 @@ namespace NationalParkClient.Models
 
       return regionList;
     }
+    public static Region GetDetails(int id)
+    {
+      var apiCallTask = ApiHelper.Get("regions", id);
+      var result = apiCallTask.Result;
+
+      JObject jsonResponse = JsonConvert.DeserializeObject<JObject>(result);
+      Region region = JsonConvert.DeserializeObject<Region>(jsonResponse.ToString());
+
+      return region;
+    }
+
+    public static void Post(Region region)
+    {
+      string jsonRegion = JsonConvert.SerializeObject(region);
+      var apiCallTask = ApiHelper.Post("regions", jsonRegion);
+    }
+
+    public static void Put(Region region)
+    {
+      string jsonRegion = JsonConvert.SerializeObject(region);
+      var apiCallTask = ApiHelper.Put("regions", region.RegionId, jsonRegion);
+    }
+
+    public static void Delete(int id)
+    {
+      var apiCallTask = ApiHelper.Delete("regions", id);
+    }
   }
-  }
+}
