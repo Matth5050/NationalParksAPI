@@ -190,7 +190,7 @@ https://localhost:5000/api/Parks/1
 
 ## Known Bugs
 
-* _No known issues_
+* _When using CRUD functionality on client side, the user must refresh the page to see the results of the change_
 
 ## License
 
