@@ -10,6 +10,8 @@ using Microsoft.IdentityModel.Tokens;
 using NationalPark.Models;
 using System.Text;
 using NationalPark.Configuration;
+using Microsoft.OpenApi.Models;
+
 
 namespace NationalPark
 {
@@ -29,7 +31,19 @@ namespace NationalPark
             services.AddDbContext<NationalParkContext>(opt =>
                 opt.UseMySql(Configuration["ConnectionStrings:DefaultConnection"], ServerVersion.AutoDetect(Configuration["ConnectionStrings:DefaultConnection"])));
             services.AddControllers();
-            services.AddSwaggerGen();  
+            services.AddSwaggerGen( c => 
+                 c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+                    {
+                    Description = @"JWT Authorization header using the Bearer scheme. \r\n\r\n 
+                                Enter 'Bearer' [space] and then your token in the text input below.
+                                \r\n\r\nExample: 'Bearer 12345abcdef'",
+                    Name = "Authorization",
+                    In = ParameterLocation.Header,
+                    Type = SecuritySchemeType.ApiKey,
+                    Scheme = "Bearer"
+                    }
+                )
+            );  
             services.Configure<JwtConfig>(Configuration.GetSection("JwtConfig"));
             // within this section we are configuring the authentication and setting the default scheme
             services.AddAuthentication(options => {
